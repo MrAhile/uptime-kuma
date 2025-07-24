@@ -1,0 +1,16 @@
+# uptime-kuma-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: uptime-kuma-service
+  namespace: uptime
+  labels:
+    app: uptime-kuma # Label pour identifier le service
+spec:
+  selector:
+    app: uptime-kuma # Cible les pods avec le label "app: uptime-kuma"
+  type: LoadBalancer # CHANGEMENT ICI : Le type de service est maintenant LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 3442 # Le port sur lequel le service sera accessible via le LoadBalancer
+      targetPort: 3001 # Le port interne du conteneur (le port d'Uptime Kuma)

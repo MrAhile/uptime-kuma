@@ -1,0 +1,40 @@
+# uptime-kuma-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: uptime-kuma-deployment
+  namespace: uptime
+  labels:
+    app: uptime-kuma
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: uptime-kuma
+  template:
+    metadata:
+      labels:
+        app: uptime-kuma
+    spec:
+      containers:
+      - name: uptime-kuma
+        image: louislam/uptime-kuma:1
+        ports:
+        - containerPort: 3001
+          name: http-kuma
+        env:
+        - name: TZ
+          value: Europe/Paris
+        volumeMounts:
+        - name: uptime-kuma-storage
+          mountPath: /app/data
+        - name: docker-socket
+          mountPath: /var/run/docker.sock
+      volumes:
+      - name: uptime-kuma-storage
+        persistentVolumeClaim:
+          claimName: uptime-kuma-volume
+      - name: docker-socket
+        hostPath:
+          path: /var/run/docker.sock
+          type: Socket

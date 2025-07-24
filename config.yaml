@@ -1,0 +1,7 @@
+# fichier de config pour le script python
+kubernetes_files:
+  - namespace.yaml
+  - uptime-kuma-pvc.yaml
+  - uptime-kuma-deployment.yaml
+  - uptime-kuma-service.yaml
+namespace: uptime
