@@ -87,3 +87,8 @@ Cette commande supprimera toutes les ressources Kubernetes définies dans les fi
 python manage_kuma.py status
 ```
 Cette commande affichera le statut actuel des pods Uptime Kuma dans le namespace spécifié.
+
+----
+#### Accessibilité
+
+Vous pouvez acceder à votre application via l'adresse suivante : http://localhost:3442/
